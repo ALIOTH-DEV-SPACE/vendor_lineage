@@ -89,6 +89,10 @@ ifeq ($(WITH_TWRP),true)
 include vendor/lineage/config/twrp.mk
 endif
 
+# Permissions
+PRODUCT_COPY_FILES += \
+    vendor/lineage/prebuilt/common/etc/permissions/privapp-permissions-elgoog.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/privapp-permissions-elgoog.xml
+
 # Do not include art debug targets
 PRODUCT_ART_TARGET_INCLUDE_DEBUG_BUILD := false
 
@@ -150,6 +154,9 @@ PRODUCT_PACKAGES += \
     mkfs.exfat \
     mkfs.ntfs \
     mount.ntfs
+
+# GApps
+$(call inherit-product, vendor/gapps/config.mk)
 
 # Openssh
 PRODUCT_PACKAGES += \
